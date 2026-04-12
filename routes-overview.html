@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brussels Bioshop Routes — Overview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #fff;
+    color: #1a1a1a;
+    line-height: 1.5;
+    padding: 2rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+  .route-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .route-header {
+    background: #f0faf0;
+    padding: 1rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .route-num {
+    font-weight: 700;
+    color: #2d7a3a;
+    font-size: 1.1rem;
+  }
+  .route-name {
+    font-weight: 600;
+    margin-left: 0.5rem;
+    color: #333;
+  }
+  .route-meta {
+    text-align: right;
+  }
+  .runner {
+    display: block;
+    font-weight: 600;
+    color: #2d7a3a;
+  }
+  .stats {
+    font-size: 0.85rem;
+    color: #666;
+  }
+  .maps-link {
+    display: inline-block;
+    margin: 0.75rem 1.25rem;
+    padding: 0.4rem 0.9rem;
+    background: #2d7a3a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .maps-link:hover { background: #236130; }
+  .loc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .loc-table thead {
+    background: #fafafa;
+  }
+  .loc-table th {
+    text-align: left;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: #555;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .loc-table td {
+    padding: 0.45rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .loc-table tr:last-child td {
+    border-bottom: none;
+  }
+  .seq {
+    font-weight: 700;
+    color: #2d7a3a;
+    width: 3rem;
+  }
+  .visit {
+    color: #888;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+  .note {
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+    background: #fffbe6;
+    border: 1px solid #f0e68c;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #665500;
+  }
+  .note strong { color: #443300; }
+  @media (max-width: 640px) {
+    body { padding: 1rem; }
+    .route-header { flex-direction: column; align-items: flex-start; }
+    .route-meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Brussels Bioshop Routes</h1>
+<p class="subtitle">13 active routes · 77 locations · Updated April 2026</p>
+
+
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 1</span>
+          <span class="route-name">Laeken–Jette</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Liesbet</span>
+          <span class="stats">8.6 km · ~43 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Pl.%20Saint-Lambert%209%2C%201020%20Bruxelles/Rue%20L%C3%A9opold%20I%20499%2C%201090%20Jette/Rue%20L%C3%A9on%20Theodor%2027%2C%201090%20Jette/Av.%20de%20Jette%20300%2C%201090%20Jette/Rue%20Pierre%20Timmermans%2043%2C%201090%20Jette/Avenue%20de%20Laeken%2C%201090%20Jette/Av.%20du%20Panth%C3%A9on%20103%2C%201081%20Bruxelles/Rue%20Dieudonn%C3%A9%20Lef%C3%A8vre%204%2C%201020%20Bruxelles/Rue%20Dieudonn%C3%A9%20Lef%C3%A8vre%2017%2C%201020%20Bruxelles/Pl.%20Saint-Lambert%209%2C%201020%20Bruxelles?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>BOS coop</td>
+          <td>Pl. Saint-Lambert 9, 1020 Bruxelles</td>
+          <td class="visit">8 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>Jaune</td>
+          <td>Rue Léopold I 499, 1090 Jette</td>
+          <td class="visit">9 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>Au Rayon Bio Miroir</td>
+          <td>Rue Léon Theodor 27, 1090 Jette</td>
+          <td class="visit">6 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">D</td>
+          <td>Mot Passant</td>
+          <td>Av. de Jette 300, 1090 Jette</td>
+          <td class="visit">9 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">E</td>
+          <td>The Barn Biomarkt</td>
+          <td>Rue Pierre Timmermans 43, 1090 Jette</td>
+          <td class="visit">6 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">F</td>
+          <td>Bio Sens</td>
+          <td>Avenue de Laeken, 1090 Jette</td>
+          <td class="visit">6 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">G</td>
+          <td>Le Bionheur</td>
+          <td>Av. du Panthéon 103, 1081 Bruxelles</td>
+          <td class="visit">9 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">H</td>
+          <td>Marché Bio Markt</td>
+          <td>Rue Dieudonné Lefèvre 4, 1020 Bruxelles</td>
+          <td class="visit">8 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">H</td>
+          <td>La Maison des Tartes</td>
+          <td>Rue Dieudonné Lefèvre 4, 1020 Bruxelles</td>
+          <td class="visit">8 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">H</td>
+          <td>Rollerland</td>
+          <td>Rue Dieudonné Lefèvre 4, 1020 Bruxelles</td>
+          <td class="visit">8 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">I</td>
+          <td>Greenbizz</td>
+          <td>Rue Dieudonné Lefèvre 17, 1020 Bruxelles</td>
+          <td class="visit">25 Nov 25</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 2</span>
+          <span class="route-name">Molenbeek–Centre</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Lucia/Alin</span>
+          <span class="stats">5.7 km · ~29 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Quai%20des%20Charbonnages%2078%2C%201080%20Molenbeek-Saint-Jean/Quai%20des%20Charbonnages%2046%2C%201080%20Molenbeek-Saint-Jean/Quai%20au%20Bois%20%C3%A0%20Br%C3%BBler%2043%2C%201000%20Bruxelles/Rue%20des%20Chartreux%2066%2C%201000%20Bruxelles/Rue%20de%20la%20Poudri%C3%A8re%2064%2C%201000%20Bruxelles/Quai%20du%20Hainaut%2029%2C%201080%20Molenbeek-Saint-Jean/Rue%20de%20l%27Escalier%201%2C%201000%20Bruxelles/Rue%20des%20Tanneurs%2058%2C%201000%20Bruxelles/Quai%20des%20Charbonnages%2078%2C%201080%20Molenbeek-Saint-Jean?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>Vidya</td>
+          <td>Quai des Charbonnages 78, 1080 Molenbeek-Saint-Jean</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>C'est si bon</td>
+          <td>Quai des Charbonnages 46, 1080 Molenbeek-Saint-Jean</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>Färm Sainte-Catherine</td>
+          <td>Quai au Bois à Brûler 43, 1000 Bruxelles</td>
+          <td class="visit">8 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">D</td>
+          <td>Den Teepot Organic Shop</td>
+          <td>Rue des Chartreux 66, 1000 Bruxelles</td>
+          <td class="visit">8 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">E</td>
+          <td>Molleke</td>
+          <td>Rue de la Poudrière 64, 1000 Bruxelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">F</td>
+          <td>BelFood - The Food Hub</td>
+          <td>Quai du Hainaut 29, 1080 Molenbeek-Saint-Jean</td>
+          <td class="visit">8 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">G</td>
+          <td>Natural Corner</td>
+          <td>Rue de l'Escalier 1, 1000 Bruxelles</td>
+          <td class="visit">19 Jan 26</td>
+        </tr>
+        <tr>
+          <td class="seq">H</td>
+          <td>Marché Bio des Tanneurs</td>
+          <td>Rue des Tanneurs 58, 1000 Bruxelles</td>
+          <td class="visit">10 Apr 26</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 4</span>
+          <span class="route-name">Saint-Gilles</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Sarah</span>
+          <span class="stats">1.8 km · ~9 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Av.%20Jean%20Volders%209%2C%201060%20Bruxelles/Av.%20Jean%20Volders%2011%2C%201060%20Saint-Gilles/Chau.%20de%20Waterloo%2042%2C%201060%20Saint-Gilles/Av.%20Paul%20Dejaer%2013%2C%201060%20Saint-Gilles/Rue%20de%20Tamines%2018%2F22%2C%201060%20Saint-Gilles/Av.%20Jean%20Volders%209%2C%201060%20Bruxelles?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>Ozfair</td>
+          <td>Av. Jean Volders 9, 1060 Bruxelles</td>
+          <td class="visit">25 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>Boulengier</td>
+          <td>Av. Jean Volders 11, 1060 Saint-Gilles</td>
+          <td class="visit">25 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>La Petite Epicerie Bio</td>
+          <td>Chau. de Waterloo 42, 1060 Saint-Gilles</td>
+          <td class="visit">25 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">D</td>
+          <td>L'Herboristerie de Louise</td>
+          <td>Av. Paul Dejaer 13, 1060 Saint-Gilles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">E</td>
+          <td>Super Monkey</td>
+          <td>Rue de Tamines 18/22, 1060 Saint-Gilles</td>
+          <td class="visit">24 Jan 26</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 6</span>
+          <span class="route-name">Schaerbeek–Saint-Josse</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Sterre</span>
+          <span class="stats">8.1 km · ~40 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Chau.%20de%20Helmet%20184%2C%201030%20Schaerbeek/Rue%20Fran%C3%A7ois-Joseph%20Navez%201%2C%201030%20Schaerbeek/Rue%20Rubens%2095%2C%201030%20Schaerbeek/Av.%20Louis%20Bertrand%2025%2C%201030%20Bruxelles/Rue%20Van%20Hove%2019%2C%201030%20Schaerbeek/Rue%20Willems%2048%2C%201210%20Saint-Josse-ten-Noode/Av.%20des%20Arts%207%2F8%2C%201210%20Bruxelles/Av.%20Milcamps%20166%2C%201030%20Schaerbeek/Av.%20Rogier%20383%2C%201030%20Schaerbeek/Chau.%20de%20Helmet%20184%2C%201030%20Schaerbeek?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>Le Thym Frais</td>
+          <td>Chau. de Helmet 184, 1030 Schaerbeek</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>Lesnectars</td>
+          <td>Rue François-Joseph Navez 1, 1030 Schaerbeek</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>Le Marché des Ecuries Van de Tram</td>
+          <td>Rue Rubens 95, 1030 Schaerbeek</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">D</td>
+          <td>Les idées à la pelle</td>
+          <td>Av. Louis Bertrand 25, 1030 Bruxelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">E</td>
+          <td>BEES coop</td>
+          <td>Rue Van Hove 19, 1030 Schaerbeek</td>
+          <td class="visit">11 Oct 25</td>
+        </tr>
+        <tr>
+          <td class="seq">F</td>
+          <td>Bio Willems</td>
+          <td>Rue Willems 48, 1210 Saint-Josse-ten-Noode</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">G</td>
+          <td>Mundo Madou - Tandem</td>
+          <td>Av. des Arts 7/8, 1210 Bruxelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">H</td>
+          <td>The Barn Bio Market</td>
+          <td>Av. Milcamps 166, 1030 Schaerbeek</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">I</td>
+          <td>Färm Meiser</td>
+          <td>Av. Rogier 383, 1030 Schaerbeek</td>
+          <td class="visit">Oct 25</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 7</span>
+          <span class="route-name">Ixelles–Louise</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Maria</span>
+          <span class="stats">3.9 km · ~20 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Rue%20d%27Edimbourg%2026%2C%201050%20Ixelles/Chau.%20d%27Ixelles%20136%2C%201050%20Ixelles/Rue%20de%20la%20Tulipe%2022%2C%201050%20Ixelles/Av.%20Louise%20113%2C%201050%20Bruxelles/Chau.%20de%20Charleroi%2092%2C%201060%20Saint-Gilles/Rue%20du%20Bailli%2096%2C%201050%20Ixelles/Rue%20Lesbroussart%20123%2C%201000%20Bruxelles/Rue%20Lesbroussart%2031%2C%201050%20Ixelles/Rue%20d%27Edimbourg%2026%2C%201050%20Ixelles?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>Mundo Mantongé - Refresh</td>
+          <td>Rue d'Edimbourg 26, 1050 Ixelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>färm.fernandcocq</td>
+          <td>Chau. d'Ixelles 136, 1050 Ixelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>The Barn Bio Market</td>
+          <td>Rue de la Tulipe 22, 1050 Ixelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">D</td>
+          <td>CPAB (school)</td>
+          <td>Av. Louise 113, 1050 Bruxelles</td>
+          <td class="visit">Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">E</td>
+          <td>The Barn Bio Markt</td>
+          <td>Chau. de Charleroi 92, 1060 Saint-Gilles</td>
+          <td class="visit">25 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">F</td>
+          <td>Oxfam Bailli</td>
+          <td>Rue du Bailli 96, 1050 Ixelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">G</td>
+          <td>Sequoia devient Färm Louise</td>
+          <td>Rue Lesbroussart 123, 1000 Bruxelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">H</td>
+          <td>Organic Food Market</td>
+          <td>Rue Lesbroussart 31, 1050 Ixelles</td>
+          <td class="visit">—</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 8</span>
+          <span class="route-name">Ixelles Sud–ULB</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Maria</span>
+          <span class="stats">3.1 km · ~15 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Rue%20Guillaume%20Stocq%2045%2C%201050%20Ixelles/Blvd%20G%C3%A9neral%20Jacques%20114%2C%201050%20Ixelles/Av.%20Adolphe%20Buyl%2070%2C%201050%20Ixelles/Av.%20des%20Saisons%2082%2C%201050%20Ixelles/Rue%20de%20Belle-Vue%2062%2C%201000%20Bruxelles/Rue%20Guillaume%20Stocq%2045%2C%201050%20Ixelles?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>Magasin Général bio ixelles</td>
+          <td>Rue Guillaume Stocq 45, 1050 Ixelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>Le Cent Quatorze</td>
+          <td>Blvd Géneral Jacques 114, 1050 Ixelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>Bio Shanti</td>
+          <td>Av. Adolphe Buyl 70, 1050 Ixelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">D</td>
+          <td>Cabas - Marché de producteur.ices</td>
+          <td>Av. des Saisons 82, 1050 Ixelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">E</td>
+          <td>C H Y L</td>
+          <td>Rue de Belle-Vue 62, 1000 Bruxelles</td>
+          <td class="visit">—</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 9</span>
+          <span class="route-name">Etterbeek</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Sophie</span>
+          <span class="stats">2.7 km · ~14 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Av.%20de%20la%20Chevalerie%209%2C%201040%20Etterbeek/Pl.%20Saint-Pierre%2038%2C%201040%20Etterbeek/Rue%20des%20Champs%204%2C%201040%20Etterbeek/Av.%20de%20la%20Chevalerie%209%2C%201040%20Etterbeek?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>Sugina</td>
+          <td>Av. de la Chevalerie 9, 1040 Etterbeek</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>The Barn Bio Market - Etterbeek</td>
+          <td>Pl. Saint-Pierre 38, 1040 Etterbeek</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>Bio marché</td>
+          <td>Rue des Champs 4, 1040 Etterbeek</td>
+          <td class="visit">20 Oct 25</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 10</span>
+          <span class="route-name">Woluwe–Stockel</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Manoj</span>
+          <span class="stats">10.0 km · ~50 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Rue%20du%20Menuisier%2027%2C%201200%20Woluwe-Saint-Lambert/Chau.%20de%20Wavre%201%2C%201040%20Etterbeek/Rue%20de%20l%27Eglise%20101%2C%201150%20Woluwe-Saint-Pierre/Rue%20du%20Menuisier%2027%2C%201200%20Woluwe-Saint-Lambert?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>C'est bio</td>
+          <td>Rue du Menuisier 27, 1200 Woluwe-Saint-Lambert</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>Färm (Métro Hankar)</td>
+          <td>Chau. de Wavre 1, 1040 Etterbeek</td>
+          <td class="visit">13 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>Färm Stockel</td>
+          <td>Rue de l'Eglise 101, 1150 Woluwe-Saint-Pierre</td>
+          <td class="visit">13 Nov 25</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 11</span>
+          <span class="route-name">Auderghem–Boitsfort</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Els</span>
+          <span class="stats">5.8 km · ~29 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Waversesteenweg%201620%2C%201160%20Brussel/Rue%20des%20B%C3%A9gonias%2010%2F16%2C%201170%20Watermael-Boitsfort/Rue%20Middelbourg%2034%2C%201170%20Watermael-Boitsfort/Waversesteenweg%201620%2C%201160%20Brussel?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>The Barn Bio Market - Auderghem</td>
+          <td>Waversesteenweg 1620, 1160 Brussel</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>Färm Keym</td>
+          <td>Rue des Bégonias 10/16, 1170 Watermael-Boitsfort</td>
+          <td class="visit">1 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>Origino</td>
+          <td>Rue Middelbourg 34, 1170 Watermael-Boitsfort</td>
+          <td class="visit">10 Apr 26</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 12</span>
+          <span class="route-name">Tenbosch–Vanderkindere</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Wenwei</span>
+          <span class="stats">4.0 km · ~20 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Chau.%20de%20Waterloo%20512%2C%201050%20Ixelles/Chau.%20de%20Waterloo%20528%2C%201050%20Ixelles/Rue%20Vanderkindere%20546%2C%201180%20Uccle/Rue%20Vanderkindere%20166%2C%201180%20Uccle/Rue%20Vanderkindere%20158%2C%201180%20Uccle/Rue%20Meyerbeer%20144%2C%201180%20Uccle/Chau.%20de%20Waterloo%20512%2C%201050%20Ixelles?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>Sequoia</td>
+          <td>Chau. de Waterloo 512, 1050 Ixelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>Brüt by Färm Tenbosch</td>
+          <td>Chau. de Waterloo 528, 1050 Ixelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>Färm Bascule</td>
+          <td>Rue Vanderkindere 546, 1180 Uccle</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">D</td>
+          <td>The Barn Bio Market - Vanderkindere</td>
+          <td>Rue Vanderkindere 166, 1180 Uccle</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">E</td>
+          <td>BIO V</td>
+          <td>Rue Vanderkindere 158, 1180 Uccle</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">F</td>
+          <td>Bio Vrac - Uccle</td>
+          <td>Rue Meyerbeer 144, 1180 Uccle</td>
+          <td class="visit">—</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 13</span>
+          <span class="route-name">Forest–Alsemberg</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Tamara</span>
+          <span class="stats">6.0 km · ~30 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Chau.%20d%27Alsemberg%20172%2C%201190%20Forest/Rue%20des%20Alli%C3%A9s%20163%2C%201190%20Forest/Rue%20des%20Alli%C3%A9s%20174%2C%201190%20Forest/Chau.%20d%27Alsemberg%20610A%2C%201180%20Uccle/Rue%20de%20Stalle%2015A%2C%201180%20Bruxelles/Chau.%20d%27Alsemberg%20172%2C%201190%20Forest?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>Bar du Matin</td>
+          <td>Chau. d'Alsemberg 172, 1190 Forest</td>
+          <td class="visit">9 Apr 26</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>Les Voisines En Font Toute Une Cocotte</td>
+          <td>Rue des Alliés 163, 1190 Forest</td>
+          <td class="visit">8 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>Bloum</td>
+          <td>Rue des Alliés 174, 1190 Forest</td>
+          <td class="visit">8 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">D</td>
+          <td>BIO - TRINITY</td>
+          <td>Chau. d'Alsemberg 610A, 1180 Uccle</td>
+          <td class="visit">8 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">E</td>
+          <td>Färm Globe</td>
+          <td>Rue de Stalle 15A, 1180 Bruxelles</td>
+          <td class="visit">8 Nov 25</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 14</span>
+          <span class="route-name">Uccle Sud</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Chris</span>
+          <span class="stats">9.6 km · ~48 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Chau.%20de%20Waterloo%201250%2C%201180%20Uccle/Chau.%20de%20Saint-Job%20532%2C%201180%20Bruxelles/Chau.%20de%20Waterloo%201485%2C%201180%20Uccle/Rue%20Egide%20Van%20Ophem%2050%2C%201180%20Uccle/Chau.%20de%20Waterloo%201250%2C%201180%20Uccle?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>Färm Vivier d'Oie</td>
+          <td>Chau. de Waterloo 1250, 1180 Uccle</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>Sequoia Organic & Natural Market</td>
+          <td>Chau. de Saint-Job 532, 1180 Bruxelles</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>Le comptoir Bio</td>
+          <td>Chau. de Waterloo 1485, 1180 Uccle</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">D</td>
+          <td>Bio-planet Uccle</td>
+          <td>Rue Egide Van Ophem 50, 1180 Uccle</td>
+          <td class="visit">—</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="route-card">
+      <div class="route-header">
+        <div class="route-title">
+          <span class="route-num">Route 15</span>
+          <span class="route-name">Anderlecht</span>
+        </div>
+        <div class="route-meta">
+          <span class="runner">Mieke</span>
+          <span class="stats">4.8 km · ~24 min</span>
+        </div>
+      </div>
+      <a class="maps-link" href="https://www.google.com/maps/dir/Bd%20Sylvain%20Dupuis%20433%2C%201070%20Anderlecht/Rue%20Saint-Guidon%2013%2C%201070%20Anderlecht/Pl.%20de%20la%20Vaillance%207%2C%201070%20Anderlecht/Rue%20d%27Aumale%2019c%2C%201070%20Bruxelles/Rue%20Wayez%20135%2C%201070%20Anderlecht/Rue%20Wayez%2060%2C%201070%20Anderlecht/Av.%20de%20Sa%C3%AFo%2016%2C%201070%20Anderlecht/Bd%20Sylvain%20Dupuis%20433%2C%201070%20Anderlecht?travelmode=bicycling" target="_blank">Open in Google Maps (bicycle)</a>
+      <table class="loc-table">
+        <thead>
+          <tr><th>Seq</th><th>Location</th><th>Address</th><th>Last visit</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="seq">A</td>
+          <td>Färm Westland</td>
+          <td>Bd Sylvain Dupuis 433, 1070 Anderlecht</td>
+          <td class="visit">6 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">B</td>
+          <td>Oxfam Anderlecht</td>
+          <td>Rue Saint-Guidon 13, 1070 Anderlecht</td>
+          <td class="visit">—</td>
+        </tr>
+        <tr>
+          <td class="seq">C</td>
+          <td>Community Centre de Rinck</td>
+          <td>Pl. de la Vaillance 7, 1070 Anderlecht</td>
+          <td class="visit">25 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">D</td>
+          <td>La fourmilière</td>
+          <td>Rue d'Aumale 19c, 1070 Bruxelles</td>
+          <td class="visit">25 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">E</td>
+          <td>Made in Anderlecht</td>
+          <td>Rue Wayez 135, 1070 Anderlecht</td>
+          <td class="visit">11 Oct 25</td>
+        </tr>
+        <tr>
+          <td class="seq">F</td>
+          <td>Biosanaa</td>
+          <td>Rue Wayez 60, 1070 Anderlecht</td>
+          <td class="visit">6 Nov 25</td>
+        </tr>
+        <tr>
+          <td class="seq">G</td>
+          <td>Wanderccop</td>
+          <td>Av. de Saïo 16, 1070 Anderlecht</td>
+          <td class="visit">18 Oct 25</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+
+<div class="note">
+  <strong>Note:</strong> Routes 3 and 5 have no active locations (all shops closed or declined) and are omitted. Their numbers are preserved intentionally.
+</div>
+
+</body>
+</html>
