@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brussels Bioshop Routes — Map</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+  #map { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; }
+
+  .legend {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    padding: 12px 14px;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    font-size: 13px;
+    min-width: 220px;
+  }
+  .legend h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    cursor: pointer;
+    user-select: none;
+  }
+  .legend-item:hover { background: #f8f8f8; border-radius: 4px; }
+  .legend-item.hidden { opacity: 0.35; }
+  .legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .legend-label {
+    flex: 1;
+    line-height: 1.3;
+  }
+  .legend-label small {
+    display: block;
+    color: #888;
+    font-size: 11px;
+  }
+  .legend-check {
+    width: 16px;
+    text-align: center;
+    color: #2d7a3a;
+    font-weight: bold;
+  }
+
+  .map-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    gap: 6px;
+  }
+  .map-controls button {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    font-weight: 500;
+  }
+  .map-controls button:hover { background: #f0f0f0; }
+</style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<div class="legend" id="legend">
+  <h3>Routes</h3>
+  <div id="legend-items"></div>
+</div>
+
+<div class="map-controls">
+  <button onclick="window._zoomIn()">Zoom +</button>
+  <button onclick="window._zoomOut()">Zoom −</button>
+  <button onclick="window._fitAll()">Fit all</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+window.addEventListener('load', function() {
+  var routeData = [{"num": 1, "name": "Laeken–Jette", "person": "Liesbet", "color": "#e6194b", "coords": [[50.8903362, 4.3441546], [50.87361146, 4.330103113], [50.8735458, 4.3262595], [50.87305593, 4.324011556], [50.8737218, 4.32386], [50.8700909, 4.3224423], [50.8668018, 4.3145139], [50.8708469, 4.3485041], [50.87073004, 4.351289757], [50.8903362, 4.3441546]], "markers": [{"lat": 50.8903362, "lon": 4.3441546, "seq": "A", "name": "BOS coop", "address": "Pl. Saint-Lambert 9, 1020 Bruxelles"}, {"lat": 50.87361146, "lon": 4.330103113, "seq": "B", "name": "Jaune", "address": "Rue Léopold I 499, 1090 Jette"}, {"lat": 50.8735458, "lon": 4.3262595, "seq": "C", "name": "Au Rayon Bio Miroir", "address": "Rue Léon Theodor 27, 1090 Jette"}, {"lat": 50.87305593, "lon": 4.324011556, "seq": "D", "name": "Mot Passant", "address": "Av. de Jette 300, 1090 Jette"}, {"lat": 50.8737218, "lon": 4.32386, "seq": "E", "name": "The Barn Biomarkt", "address": "Rue Pierre Timmermans 43, 1090 Jette"}, {"lat": 50.8700909, "lon": 4.3224423, "seq": "F", "name": "Bio Sens", "address": "Avenue de Laeken, 1090 Jette"}, {"lat": 50.8668018, "lon": 4.3145139, "seq": "G", "name": "Le Bionheur", "address": "Av. du Panthéon 103, 1081 Bruxelles"}, {"lat": 50.8708469, "lon": 4.3485041, "seq": "H", "name": "Marché Bio Markt", "address": "Rue Dieudonné Lefèvre 4, 1020 Bruxelles"}, {"lat": 50.8708469, "lon": 4.3485041, "seq": "H", "name": "La Maison des Tartes", "address": "Rue Dieudonné Lefèvre 4, 1020 Bruxelles"}, {"lat": 50.8708469, "lon": 4.3485041, "seq": "H", "name": "Rollerland", "address": "Rue Dieudonné Lefèvre 4, 1020 Bruxelles"}, {"lat": 50.87073004, "lon": 4.351289757, "seq": "I", "name": "Greenbizz", "address": "Rue Dieudonné Lefèvre 17, 1020 Bruxelles"}], "distance": 8.6, "time": 43}, {"num": 2, "name": "Molenbeek–Centre", "person": "Lucia/Alin", "color": "#3cb44b", "coords": [[50.8572068, 4.3444664], [50.8557741, 4.343549764], [50.8526211, 4.3480365], [50.8484693, 4.345038], [50.8484874, 4.3387785], [50.851746, 4.3392836], [50.8435445, 4.3522584], [50.8400185, 4.3467134], [50.8572068, 4.3444664]], "markers": [{"lat": 50.8572068, "lon": 4.3444664, "seq": "A", "name": "Vidya", "address": "Quai des Charbonnages 78, 1080 Molenbeek-Saint-Jean"}, {"lat": 50.8557741, "lon": 4.343549764, "seq": "B", "name": "C'est si bon", "address": "Quai des Charbonnages 46, 1080 Molenbeek-Saint-Jean"}, {"lat": 50.8526211, "lon": 4.3480365, "seq": "C", "name": "Färm Sainte-Catherine", "address": "Quai au Bois à Brûler 43, 1000 Bruxelles"}, {"lat": 50.8484693, "lon": 4.345038, "seq": "D", "name": "Den Teepot Organic Shop", "address": "Rue des Chartreux 66, 1000 Bruxelles"}, {"lat": 50.8484874, "lon": 4.3387785, "seq": "E", "name": "Molleke", "address": "Rue de la Poudrière 64, 1000 Bruxelles"}, {"lat": 50.851746, "lon": 4.3392836, "seq": "F", "name": "BelFood - The Food Hub", "address": "Quai du Hainaut 29, 1080 Molenbeek-Saint-Jean"}, {"lat": 50.8435445, "lon": 4.3522584, "seq": "G", "name": "Natural Corner", "address": "Rue de l'Escalier 1, 1000 Bruxelles"}, {"lat": 50.8400185, "lon": 4.3467134, "seq": "H", "name": "Marché Bio des Tanneurs", "address": "Rue des Tanneurs 58, 1000 Bruxelles"}], "distance": 5.7, "time": 29}, {"num": 4, "name": "Saint-Gilles", "person": "Sarah", "color": "#4363d8", "coords": [[50.8323346, 4.3428275], [50.83230314, 4.342998575], [50.8313929, 4.344877], [50.8261959, 4.3447039], [50.8261325, 4.3481373], [50.8323346, 4.3428275]], "markers": [{"lat": 50.8323346, "lon": 4.3428275, "seq": "A", "name": "Ozfair", "address": "Av. Jean Volders 9, 1060 Bruxelles"}, {"lat": 50.83230314, "lon": 4.342998575, "seq": "B", "name": "Boulengier", "address": "Av. Jean Volders 11, 1060 Saint-Gilles"}, {"lat": 50.8313929, "lon": 4.344877, "seq": "C", "name": "La Petite Epicerie Bio", "address": "Chau. de Waterloo 42, 1060 Saint-Gilles"}, {"lat": 50.8261959, "lon": 4.3447039, "seq": "D", "name": "L'Herboristerie de Louise", "address": "Av. Paul Dejaer 13, 1060 Saint-Gilles"}, {"lat": 50.8261325, "lon": 4.3481373, "seq": "E", "name": "Super Monkey", "address": "Rue de Tamines 18/22, 1060 Saint-Gilles"}], "distance": 1.8, "time": 9}, {"num": 6, "name": "Schaerbeek–Saint-Josse", "person": "Sterre", "color": "#f58231", "coords": [[50.8728082, 4.3866344], [50.870664, 4.3719018], [50.8658936, 4.3732586], [50.8636076, 4.3748131], [50.8568832, 4.3773373], [50.8490228, 4.3769844], [50.84839041, 4.370457379], [50.85346667, 4.395602371], [50.8553148, 4.395073], [50.8728082, 4.3866344]], "markers": [{"lat": 50.8728082, "lon": 4.3866344, "seq": "A", "name": "Le Thym Frais", "address": "Chau. de Helmet 184, 1030 Schaerbeek"}, {"lat": 50.870664, "lon": 4.3719018, "seq": "B", "name": "Lesnectars", "address": "Rue François-Joseph Navez 1, 1030 Schaerbeek"}, {"lat": 50.8658936, "lon": 4.3732586, "seq": "C", "name": "Le Marché des Ecuries Van de Tram", "address": "Rue Rubens 95, 1030 Schaerbeek"}, {"lat": 50.8636076, "lon": 4.3748131, "seq": "D", "name": "Les idées à la pelle", "address": "Av. Louis Bertrand 25, 1030 Bruxelles"}, {"lat": 50.8568832, "lon": 4.3773373, "seq": "E", "name": "BEES coop", "address": "Rue Van Hove 19, 1030 Schaerbeek"}, {"lat": 50.8490228, "lon": 4.3769844, "seq": "F", "name": "Bio Willems", "address": "Rue Willems 48, 1210 Saint-Josse-ten-Noode"}, {"lat": 50.84839041, "lon": 4.370457379, "seq": "G", "name": "Mundo Madou - Tandem", "address": "Av. des Arts 7/8, 1210 Bruxelles"}, {"lat": 50.85346667, "lon": 4.395602371, "seq": "H", "name": "The Barn Bio Market", "address": "Av. Milcamps 166, 1030 Schaerbeek"}, {"lat": 50.8553148, "lon": 4.395073, "seq": "I", "name": "Färm Meiser", "address": "Av. Rogier 383, 1030 Schaerbeek"}], "distance": 8.1, "time": 40}, {"num": 7, "name": "Ixelles–Louise", "person": "Maria", "color": "#911eb4", "coords": [[50.83800658, 4.365015985], [50.8342313, 4.3654385], [50.8341269, 4.3668331], [50.83050442, 4.360128119], [50.8287043, 4.3557903], [50.8253558, 4.3594407], [50.8276661, 4.3642281], [50.8278762, 4.3696365], [50.83800658, 4.365015985]], "markers": [{"lat": 50.83800658, "lon": 4.365015985, "seq": "A", "name": "Mundo Mantongé - Refresh", "address": "Rue d'Edimbourg 26, 1050 Ixelles"}, {"lat": 50.8342313, "lon": 4.3654385, "seq": "B", "name": "färm.fernandcocq", "address": "Chau. d'Ixelles 136, 1050 Ixelles"}, {"lat": 50.8341269, "lon": 4.3668331, "seq": "C", "name": "The Barn Bio Market", "address": "Rue de la Tulipe 22, 1050 Ixelles"}, {"lat": 50.83050442, "lon": 4.360128119, "seq": "D", "name": "CPAB (school)", "address": "Av. Louise 113, 1050 Bruxelles"}, {"lat": 50.8287043, "lon": 4.3557903, "seq": "E", "name": "The Barn Bio Markt", "address": "Chau. de Charleroi 92, 1060 Saint-Gilles"}, {"lat": 50.8253558, "lon": 4.3594407, "seq": "F", "name": "Oxfam Bailli", "address": "Rue du Bailli 96, 1050 Ixelles"}, {"lat": 50.8276661, "lon": 4.3642281, "seq": "G", "name": "Sequoia devient Färm Louise", "address": "Rue Lesbroussart 123, 1000 Bruxelles"}, {"lat": 50.8278762, "lon": 4.3696365, "seq": "H", "name": "Organic Food Market", "address": "Rue Lesbroussart 31, 1050 Ixelles"}], "distance": 3.9, "time": 20}, {"num": 8, "name": "Ixelles Sud–ULB", "person": "Maria", "color": "#42d4f4", "coords": [[50.8236225, 4.3767422], [50.8199051, 4.3816622], [50.8168656, 4.3819058], [50.8187392, 4.3877796], [50.8196806, 4.3714214], [50.8236225, 4.3767422]], "markers": [{"lat": 50.8236225, "lon": 4.3767422, "seq": "A", "name": "Magasin Général bio ixelles", "address": "Rue Guillaume Stocq 45, 1050 Ixelles"}, {"lat": 50.8199051, "lon": 4.3816622, "seq": "B", "name": "Le Cent Quatorze", "address": "Blvd Géneral Jacques 114, 1050 Ixelles"}, {"lat": 50.8168656, "lon": 4.3819058, "seq": "C", "name": "Bio Shanti", "address": "Av. Adolphe Buyl 70, 1050 Ixelles"}, {"lat": 50.8187392, "lon": 4.3877796, "seq": "D", "name": "Cabas - Marché de producteur.ices", "address": "Av. des Saisons 82, 1050 Ixelles"}, {"lat": 50.8196806, "lon": 4.3714214, "seq": "E", "name": "C H Y L", "address": "Rue de Belle-Vue 62, 1000 Bruxelles"}], "distance": 3.1, "time": 15}, {"num": 9, "name": "Etterbeek", "person": "Sophie", "color": "#f032e6", "coords": [[50.8426077, 4.3959968], [50.8376412, 4.3955566], [50.83102371, 4.390685318], [50.8426077, 4.3959968]], "markers": [{"lat": 50.8426077, "lon": 4.3959968, "seq": "A", "name": "Sugina", "address": "Av. de la Chevalerie 9, 1040 Etterbeek"}, {"lat": 50.8376412, "lon": 4.3955566, "seq": "B", "name": "The Barn Bio Market - Etterbeek", "address": "Pl. Saint-Pierre 38, 1040 Etterbeek"}, {"lat": 50.83102371, "lon": 4.390685318, "seq": "C", "name": "Bio marché", "address": "Rue des Champs 4, 1040 Etterbeek"}], "distance": 2.7, "time": 14}, {"num": 10, "name": "Woluwe–Stockel", "person": "Manoj", "color": "#bfef45", "coords": [[50.8441845, 4.4183127], [50.8240832, 4.405449674], [50.8407254, 4.4631041], [50.8441845, 4.4183127]], "markers": [{"lat": 50.8441845, "lon": 4.4183127, "seq": "A", "name": "C'est bio", "address": "Rue du Menuisier 27, 1200 Woluwe-Saint-Lambert"}, {"lat": 50.8240832, "lon": 4.405449674, "seq": "B", "name": "Färm (Métro Hankar)", "address": "Chau. de Wavre 1, 1040 Etterbeek"}, {"lat": 50.8407254, "lon": 4.4631041, "seq": "C", "name": "Färm Stockel", "address": "Rue de l'Eglise 101, 1150 Woluwe-Saint-Pierre"}], "distance": 10.0, "time": 50}, {"num": 11, "name": "Auderghem–Boitsfort", "person": "Els", "color": "#fabed4", "coords": [[50.8168327, 4.4252301], [50.8105874, 4.4035839], [50.7968004, 4.4178183], [50.8168327, 4.4252301]], "markers": [{"lat": 50.8168327, "lon": 4.4252301, "seq": "A", "name": "The Barn Bio Market - Auderghem", "address": "Waversesteenweg 1620, 1160 Brussel"}, {"lat": 50.8105874, "lon": 4.4035839, "seq": "B", "name": "Färm Keym", "address": "Rue des Bégonias 10/16, 1170 Watermael-Boitsfort"}, {"lat": 50.7968004, "lon": 4.4178183, "seq": "C", "name": "Origino", "address": "Rue Middelbourg 34, 1170 Watermael-Boitsfort"}], "distance": 5.8, "time": 29}, {"num": 12, "name": "Tenbosch–Vanderkindere", "person": "Wenwei", "color": "#469990", "coords": [[50.8200564, 4.3600945], [50.8198438, 4.3606106], [50.8147007, 4.3657894], [50.8139503, 4.3462269], [50.8140052, 4.3458452], [50.8142684, 4.3403778], [50.8200564, 4.3600945]], "markers": [{"lat": 50.8200564, "lon": 4.3600945, "seq": "A", "name": "Sequoia", "address": "Chau. de Waterloo 512, 1050 Ixelles"}, {"lat": 50.8198438, "lon": 4.3606106, "seq": "B", "name": "Brüt by Färm Tenbosch", "address": "Chau. de Waterloo 528, 1050 Ixelles"}, {"lat": 50.8147007, "lon": 4.3657894, "seq": "C", "name": "Färm Bascule", "address": "Rue Vanderkindere 546, 1180 Uccle"}, {"lat": 50.8139503, "lon": 4.3462269, "seq": "D", "name": "The Barn Bio Market - Vanderkindere", "address": "Rue Vanderkindere 166, 1180 Uccle"}, {"lat": 50.8140052, "lon": 4.3458452, "seq": "E", "name": "BIO V", "address": "Rue Vanderkindere 158, 1180 Uccle"}, {"lat": 50.8142684, "lon": 4.3403778, "seq": "F", "name": "Bio Vrac - Uccle", "address": "Rue Meyerbeer 144, 1180 Uccle"}], "distance": 4.0, "time": 20}, {"num": 13, "name": "Forest–Alsemberg", "person": "Tamara", "color": "#dcbeff", "coords": [[50.8219048, 4.343048621], [50.8197349, 4.3272294], [50.8193347, 4.3268795], [50.8051837, 4.3368313], [50.8000897, 4.3356392], [50.8219048, 4.343048621]], "markers": [{"lat": 50.8219048, "lon": 4.343048621, "seq": "A", "name": "Bar du Matin", "address": "Chau. d'Alsemberg 172, 1190 Forest"}, {"lat": 50.8197349, "lon": 4.3272294, "seq": "B", "name": "Les Voisines En Font Toute Une Cocotte", "address": "Rue des Alliés 163, 1190 Forest"}, {"lat": 50.8193347, "lon": 4.3268795, "seq": "C", "name": "Bloum", "address": "Rue des Alliés 174, 1190 Forest"}, {"lat": 50.8051837, "lon": 4.3368313, "seq": "D", "name": "BIO - TRINITY", "address": "Chau. d'Alsemberg 610A, 1180 Uccle"}, {"lat": 50.8000897, "lon": 4.3356392, "seq": "E", "name": "Färm Globe", "address": "Rue de Stalle 15A, 1180 Bruxelles"}], "distance": 6.0, "time": 30}, {"num": 14, "name": "Uccle Sud", "person": "Chris", "color": "#9A6324", "coords": [[50.7934177, 4.374286], [50.7928663, 4.3592374], [50.7833051, 4.3790174], [50.7931289, 4.3296038], [50.7934177, 4.374286]], "markers": [{"lat": 50.7934177, "lon": 4.374286, "seq": "A", "name": "Färm Vivier d'Oie", "address": "Chau. de Waterloo 1250, 1180 Uccle"}, {"lat": 50.7928663, "lon": 4.3592374, "seq": "B", "name": "Sequoia Organic & Natural Market", "address": "Chau. de Saint-Job 532, 1180 Bruxelles"}, {"lat": 50.7833051, "lon": 4.3790174, "seq": "C", "name": "Le comptoir Bio", "address": "Chau. de Waterloo 1485, 1180 Uccle"}, {"lat": 50.7931289, "lon": 4.3296038, "seq": "D", "name": "Bio-planet Uccle", "address": "Rue Egide Van Ophem 50, 1180 Uccle"}], "distance": 9.6, "time": 48}, {"num": 15, "name": "Anderlecht", "person": "Mieke", "color": "#800000", "coords": [[50.8387823, 4.2870944], [50.835638, 4.3056063], [50.83559416, 4.306705359], [50.83661903, 4.307420906], [50.8355548, 4.3101259], [50.8358597, 4.3136612], [50.82802433, 4.301360817], [50.8387823, 4.2870944]], "markers": [{"lat": 50.8387823, "lon": 4.2870944, "seq": "A", "name": "Färm Westland", "address": "Bd Sylvain Dupuis 433, 1070 Anderlecht"}, {"lat": 50.835638, "lon": 4.3056063, "seq": "B", "name": "Oxfam Anderlecht", "address": "Rue Saint-Guidon 13, 1070 Anderlecht"}, {"lat": 50.83559416, "lon": 4.306705359, "seq": "C", "name": "Community Centre de Rinck", "address": "Pl. de la Vaillance 7, 1070 Anderlecht"}, {"lat": 50.83661903, "lon": 4.307420906, "seq": "D", "name": "La fourmilière", "address": "Rue d'Aumale 19c, 1070 Bruxelles"}, {"lat": 50.8355548, "lon": 4.3101259, "seq": "E", "name": "Made in Anderlecht", "address": "Rue Wayez 135, 1070 Anderlecht"}, {"lat": 50.8358597, "lon": 4.3136612, "seq": "F", "name": "Biosanaa", "address": "Rue Wayez 60, 1070 Anderlecht"}, {"lat": 50.82802433, "lon": 4.301360817, "seq": "G", "name": "Wanderccop", "address": "Av. de Saïo 16, 1070 Anderlecht"}], "distance": 4.8, "time": 24}];
+
+  var map = L.map('map', {
+    zoomControl: false
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}@2x.png', {
+    attribution: '&copy; OSM contributors &copy; CARTO',
+    maxZoom: 19
+  }).addTo(map);
+
+  var allBounds = L.latLngBounds();
+  var routeLayers = {};
+
+  routeData.forEach(function(route) {
+    var group = L.layerGroup();
+
+    // Polyline
+    var polyline = L.polyline(route.coords, {
+      color: route.color,
+      weight: 3,
+      opacity: 0.8
+    }).addTo(group);
+
+    // Markers - deduplicate by coords for label placement
+    var seenCoords = {};
+    route.markers.forEach(function(m) {
+      var key = m.lat.toFixed(5) + ',' + m.lon.toFixed(5);
+
+      // Popup content for this marker
+      var popup = '<strong>' + m.name + '</strong><br>' +
+                  '<span style="color:#666;font-size:12px">' + m.address + '</span><br>' +
+                  '<span style="color:#2d7a3a;font-size:12px">Route ' + route.num + ' · ' + route.name + '</span>';
+
+      if (!seenCoords[key]) {
+        seenCoords[key] = true;
+
+        // Circle marker with sequence label
+        var circle = L.circleMarker([m.lat, m.lon], {
+          radius: 12,
+          fillColor: route.color,
+          color: '#fff',
+          weight: 2,
+          fillOpacity: 0.9
+        }).addTo(group);
+
+        // Tooltip for label
+        circle.bindTooltip(m.seq, {
+          permanent: true,
+          direction: 'center',
+          className: 'seq-label',
+          offset: [0, 0]
+        });
+
+        circle.bindPopup(popup);
+      } else {
+        // Co-located: add a tiny invisible marker just for the popup
+        var dot = L.circleMarker([m.lat, m.lon], {
+          radius: 0,
+          fillOpacity: 0,
+          opacity: 0
+        }).addTo(group);
+        // We'll add all co-located names to the main marker popup instead
+      }
+    });
+
+    // Build combined popups for co-located stops
+    var coordGroups = {};
+    route.markers.forEach(function(m) {
+      var key = m.lat.toFixed(5) + ',' + m.lon.toFixed(5);
+      if (!coordGroups[key]) coordGroups[key] = [];
+      coordGroups[key].push(m);
+    });
+
+    // Update circle popups with combined info
+    group.eachLayer(function(layer) {
+      if (layer instanceof L.CircleMarker && layer.options.radius > 0) {
+        var ll = layer.getLatLng();
+        var key = ll.lat.toFixed(5) + ',' + ll.lng.toFixed(5);
+        var items = coordGroups[key];
+        if (items && items.length > 1) {
+          var names = items.map(function(i) { return '<strong>' + i.name + '</strong>'; }).join('<br>');
+          var popup = names + '<br>' +
+                      '<span style="color:#666;font-size:12px">' + items[0].address + '</span><br>' +
+                      '<span style="color:#2d7a3a;font-size:12px">Route ' + route.num + ' · ' + route.name + '</span>';
+          layer.setPopupContent(popup);
+        }
+      }
+    });
+
+    group.addTo(map);
+    routeLayers[route.num] = { group: group, visible: true };
+
+    // Extend bounds
+    route.coords.forEach(function(c) {
+      allBounds.extend(c);
+    });
+  });
+
+  map.fitBounds(allBounds, { padding: [40, 40] });
+
+  // Build legend
+  var legendEl = document.getElementById('legend-items');
+  routeData.forEach(function(route) {
+    var item = document.createElement('div');
+    item.className = 'legend-item';
+    item.innerHTML =
+      '<div class="legend-check" id="check-' + route.num + '">✓</div>' +
+      '<div class="legend-swatch" style="background:' + route.color + '"></div>' +
+      '<div class="legend-label">' +
+        route.num + ' · ' + route.name +
+        '<small>' + route.person + ' · ' + route.distance + ' km</small>' +
+      '</div>';
+
+    item.addEventListener('click', function() {
+      var state = routeLayers[route.num];
+      if (state.visible) {
+        map.removeLayer(state.group);
+        state.visible = false;
+        item.classList.add('hidden');
+        document.getElementById('check-' + route.num).textContent = '';
+      } else {
+        map.addLayer(state.group);
+        state.visible = true;
+        item.classList.remove('hidden');
+        document.getElementById('check-' + route.num).textContent = '✓';
+      }
+    });
+
+    legendEl.appendChild(item);
+  });
+
+  // Controls
+  window._zoomIn = function() { map.zoomIn(); };
+  window._zoomOut = function() { map.zoomOut(); };
+  window._fitAll = function() { map.fitBounds(allBounds, { padding: [40, 40] }); };
+});
+</script>
+
+<style>
+  .seq-label {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #fff;
+    font-weight: 700;
+    font-size: 11px;
+    text-align: center;
+  }
+  .seq-label::before {
+    display: none;
+  }
+</style>
+
+</body>
+</html>
