@@ -726,7 +726,7 @@ function selectAll(on){ ROUTES.forEach(function(r){ setRoute(r.label,on); }); fi
 window.toggleRoute = toggleRoute; window.selectAll = selectAll; window.fitVisible = fitVisible;
 window.addEventListener('load', function(){
   map = L.map('map',{zoomControl:true});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_4tpl_1_6ce16d126c2b7016a5cfd828',{
     attribution:'&copy; OpenStreetMap contributors &copy; CARTO', subdomains:'abcd', maxZoom:20}).addTo(map);
   var Fit = L.Control.extend({options:{position:'topleft'}, onAdd:function(){
     var d = L.DomUtil.create('div','leaflet-bar fitbtn');
